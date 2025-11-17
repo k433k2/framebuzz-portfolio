@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - FrameBuzz Photography</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            overflow-x: hidden;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Enhanced Header Styles */
+        header {
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.8);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2c3e50;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+        
+        .logo span {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .logo::before {
+            content: "📸";
+            font-size: 28px;
+            margin-right: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+        
+        nav ul li {
+            position: relative;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            transition: left 0.4s ease;
+            z-index: -1;
+            border-radius: 25px;
+        }
+        
+        nav ul li a:hover::before {
+            left: 0;
+        }
+        
+        nav ul li a:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        nav ul li a i {
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+        
+        nav ul li a:hover i {
+            transform: scale(1.2);
+        }
+        
+        /* Active state for nav items */
+        nav ul li a.active {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .mobile-menu:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: #3498db;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            color: #666;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .contact-details p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .contact-details a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-details a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .social-contact {
+            margin-top: 40px;
+        }
+        
+        .social-contact h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+        
+        .social-icons a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-form h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Studio Gallery Section */
+        .studio-gallery {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            height: 250px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 36px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 2001;
+        }
+        
+        .lightbox-close:hover {
+            color: #3498db;
+            transform: scale(1.1);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 30px;
+        }
+        
+        .lightbox-prev, .lightbox-next {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            font-size: 28px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 400px;
+        }
+        
+        .map-placeholder {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            background: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #f9f9f9;
+        }
+        
+        .faq-answer {
+            background: #f9f9f9;
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 50px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo span {
+            color: #3498db;
+        }
+        
+        .footer-social {
+            display: flex;
+            margin: 25px 0;
+        }
+        
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 12px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+        
+        .footer-social a:hover {
+            background-color: #3498db;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 25px;
+            font-size: 14px;
+            opacity: 0.7;
+            text-align: center;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 10px 0;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+                transition: right 0.4s ease;
+                z-index: 999;
+                padding: 80px 20px 20px;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                padding: 15px 20px;
+                border-radius: 12px;
+                justify-content: flex-start;
+                font-size: 16px;
+                border: 1px solid rgba(0,0,0,0.05);
+            }
+            
+            .mobile-menu {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1001;
+            }
+            
+            .logo {
+                font-size: 28px;
+            }
+            
+            .hero {
+                height: 40vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .contact-info, .contact-form {
+                padding: 30px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .lightbox-nav {
+                padding: 0 15px;
+            }
+            
+            .lightbox-prev, .lightbox-next {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 24px;
+            }
+            
+            nav {
+                width: 100%;
+            }
+            
+            .hero {
+                height: 35vh;
+                margin-top: 80px;
+            }
+            
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .contact-method {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .gallery-item {
+                height: 250px;
+            }
+            
+            .lightbox-close {
+                top: 10px;
+                right: 15px;
+                font-size: 30px;
+            }
+            
+            .lightbox-prev, .lightbox-next {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Frame<span>Buzz</span></a>
+            <button class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-category="port-folio"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="babyshoot.html" class="nav-link" data-category="baby-shoot"><i class="fas fa-baby"></i> Baby Shoot</a></li>
+                    <li><a href="prewedding.html" class="nav-link" data-category="prewedding"><i class="fas fa-heart"></i> Prewedding</a></li>
+                    <li><a href="engagement.html" class="nav-link" data-category="engagement"><i class="fas fa-gem"></i> Engagement</a></li>
+                    <li><a href="haldi.html" class="nav-link" data-category="haldi"><i class="fas fa-spa"></i> Haldi</a></li>
+                    <li><a href="wedding.html" class="nav-link" data-category="wedding"><i class="fas fa-ring"></i> Wedding</a></li>
+                    <li><a href="contact.html" class="nav-link active" data-category="contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Get In Touch</h1>
+            <p>Let's create beautiful memories together. Contact us for your photography needs.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+91 95964 10937</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@framebuzz.com">info@framebuzz.com</a></p>
+                            <p><a href="mailto:bookings@framebuzz.com">bookings@framebuzz.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Address</h4>
+                            <p>123 Photography Lane</p>
+                            <p>Studio City, CA 90210</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Business Hours</h4>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                            <p>Saturday: 10:00 AM - 4:00 PM</p>
+                            <p>Sunday: Closed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-contact">
+                        <h4>Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" class="form-control">
+                                <option value="">Select a service</option>
+                                <option value="baby-shoot">Baby Shoot</option>
+                                <option value="prewedding">Prewedding</option>
+                                <option value="engagement">Engagement</option>
+                                <option value="haldi">Haldi Ceremony</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" placeholder="Tell us about your photography needs..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studio Gallery Section -->
+    <section class="studio-gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Studio & Work</h2>
+                <p>Take a look at our studio space and some of our recent work</p>
+            </div>
+            
+            <div class="gallery-grid" id="studioGallery">
+                <!-- Studio photos will be added here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Find Us</h2>
+                <p>Visit our studio for a consultation</p>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <div>
+                        <i class="fas fa-map-marked-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <p>Interactive Map Would Appear Here</p>
+                        <p>123 Photography Lane, Studio City, CA 90210</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common questions</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How far in advance should I book my photography session?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We recommend booking at least 2-3 months in advance for weddings and 2-4 weeks for other sessions to ensure availability. Popular dates fill up quickly, so early booking is advised.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is included in your photography packages?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Our packages include professional photography, edited high-resolution images, online gallery, printing rights, and a personalized consultation. Additional services like albums, prints, and extended coverage are available as add-ons.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you travel for photography sessions?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we travel for sessions! Local travel is included in our packages, and we're available for destination photography with travel expenses calculated based on location.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long until I receive my photos?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Delivery times vary by session type: Engagement sessions (2-3 weeks), Weddings (4-6 weeks), Portrait sessions (2 weeks). We provide a few preview images within a week of your session.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <div class="lightbox-content">
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        </div>
+        <div class="lightbox-nav">
+            <button class="lightbox-prev" id="lightboxPrev">&#10094;</button>
+            <button class="lightbox-next" id="lightboxNext">&#10095;</button>
+        </div>
+        <div class="lightbox-counter" id="lightboxCounter">1 / 12</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Frame<span>Buzz</span></div>
+                <p>Capturing your special moments with love and creativity</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+                <p class="copyright">© 2025 FrameBuzz Photography. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Studio photos data
+        const studioPhotos = [
+            {
+                id: 1,
+                src: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Our professional photography studio"
+            },
+            {
+                id: 2,
+                src: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Studio lighting setup"
+            },
+            {
+                id: 3,
+                src: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Camera equipment and gear"
+            },
+            {
+                id: 4,
+                src: "https://images.unsplash.com/photo-1587334894137-85e2c85e11c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Portrait session in progress"
+            },
+            {
+                id: 5,
+                src: "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Photo editing workstation"
+            },
+            {
+                id: 6,
+                src: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Client meeting area"
+            },
+            {
+                id: 7,
+                src: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Backdrop collection"
+            },
+            {
+                id: 8,
+                src: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Professional lighting equipment"
+            },
+            {
+                id: 9,
+                src: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Camera lens collection"
+            },
+            {
+                id: 10,
+                src: "https://images.unsplash.com/photo-1587334894137-85e2c85e11c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Studio portrait setup"
+            },
+            {
+                id: 11,
+                src: "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Digital editing suite"
+            },
+            {
+                id: 12,
+                src: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                alt: "Client viewing area"
+            }
+        ];
+
+        // DOM Elements
+        const galleryGrid = document.getElementById('studioGallery');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const nav = document.querySelector('nav');
+
+        // Current image index
+        let currentImageIndex = 0;
+
+        // Initialize gallery
+        function initGallery() {
+            // Create gallery items
+            studioPhotos.forEach((photo, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `<img src="${photo.src}" alt="${photo.alt}" data-index="${index}">`;
+                galleryGrid.appendChild(galleryItem);
+            });
+
+            // Add click event to gallery items
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const index = parseInt(this.querySelector('img').getAttribute('data-index'));
+                    openLightbox(index);
+                });
+            });
+        }
+
+        // Open lightbox
+        function openLightbox(index) {
+            currentImageIndex = index;
+            updateLightboxImage();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        // Close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        }
+
+        // Update lightbox image
+        function updateLightboxImage() {
+            const photo = studioPhotos[currentImageIndex];
+            lightboxImg.src = photo.src;
+            lightboxImg.alt = photo.alt;
+            lightboxCounter.textContent = `${currentImageIndex + 1} / ${studioPhotos.length}`;
+        }
+
+        // Show next image
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % studioPhotos.length;
+            updateLightboxImage();
+        }
+
+        // Show previous image
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + studioPhotos.length) % studioPhotos.length;
+            updateLightboxImage();
+        }
+
+        // Keyboard navigation
+        function handleKeydown(e) {
+            if (!lightbox.classList.contains('active')) return;
+            
+            switch(e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowLeft':
+                    showPrevImage();
+                    break;
+                case 'ArrowRight':
+                    showNextImage();
+                    break;
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            nav.classList.toggle('active');
+            // Change icon when menu is open
+            const icon = mobileMenu.querySelector('i');
+            if (nav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // Show success message
+            alert(`Thank you, ${name}! Your message has been sent successfully. We'll get back to you at ${email} within 24 hours.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentNode;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Event listeners
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', showPrevImage);
+        lightboxNext.addEventListener('click', showNextImage);
+        document.addEventListener('keydown', handleKeydown);
+        mobileMenu.addEventListener('click', toggleMobileMenu);
+
+        // Close lightbox when clicking on the background
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                nav.classList.remove('active');
+                // Reset menu icon
+                const icon = mobileMenu.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Set active state for current page
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('data-category') === 'contact') {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+
+        // Initialize the gallery
+        initGallery();
+    </script>
+</body>
+</html>
