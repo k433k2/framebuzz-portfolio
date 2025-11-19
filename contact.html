@@ -71,11 +71,7 @@
             position: relative;
         }
         
-        .logo::before {
-            content: "📸";
-            font-size: 28px;
-            margin-right: 5px;
-        }
+      
         
         nav ul {
             display: flex;
@@ -210,7 +206,7 @@
             width: 70px;
             height: 3px;
             background-color: #3498db;
-            bottom: -10px;
+            bottom: -0px;
             left: 50%;
             transform: translateX(-50%);
         }
@@ -829,7 +825,8 @@
     <!-- Enhanced Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">Frame<span>Buzz</span></a>
+            <a href="#" class="logo">
+                <img src="public/logo.jpg" alt="logo" height="50px" width="50px" style="border-radius: 10px;">Frame<span>Buzz</span></a>
             <button class="mobile-menu">
                 <i class="fas fa-bars"></i>
             </button>
@@ -883,8 +880,8 @@
                         </div>
                         <div class="contact-details">
                             <h4>Email</h4>
-                            <p><a href="mailto:info@framebuzz.com">info@framebuzz.com</a></p>
-                            <p><a href="mailto:bookings@framebuzz.com">bookings@framebuzz.com</a></p>
+                            <p><a href="mailto:info@framebuzz.com">Zeestudioweddingphotographer@gmail.com</a></p>
+                            <!-- <p><a href="mailto:bookings@framebuzz.com">bookings@framebuzz.com</a></p> -->
                         </div>
                     </div>
                     
@@ -894,8 +891,8 @@
                         </div>
                         <div class="contact-details">
                             <h4>Address</h4>
-                            <p>123 Photography Lane</p>
-                            <p>Studio City, CA 90210</p>
+                            <p> Delhi NCR Gurugram Sector 41</p>
+                            <!-- <p>Studio City, CA 90210</p> -->
                         </div>
                     </div>
                     
@@ -915,7 +912,7 @@
                         <h4>Follow Us</h4>
                         <div class="social-icons">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.instagram.com/p/DRHBmtXEXTc/?igsh=NXowdGZhdHdnMjlh" target="_blank"><i class="fab fa-instagram"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>
                             <a href="#"><i class="fab fa-pinterest"></i></a>
                         </div>
@@ -1074,7 +1071,7 @@
                 <p>Capturing your special moments with love and creativity</p>
                 <div class="footer-social">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/p/DRHBmtXEXTc/?igsh=NXowdGZhdHdnMjlh" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-pinterest"></i></a>
                 </div>
@@ -1103,7 +1100,7 @@
             },
             {
                 id: 4,
-                src: "https://images.unsplash.com/photo-1587334894137-85e2c85e11c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                src: "https://images.unsplash.com/photo-1616702451070-5c41fc0264c9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGNhbWVyYSUyMG1hbnxlbnwwfHwwfHx8MA%3D%3D",
                 alt: "Portrait session in progress"
             },
             {
@@ -1133,7 +1130,7 @@
             },
             {
                 id: 10,
-                src: "https://images.unsplash.com/photo-1587334894137-85e2c85e11c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                src: "https://images.unsplash.com/photo-1632670536499-ebc8bc72892a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                 alt: "Studio portrait setup"
             },
             {
@@ -1247,19 +1244,40 @@
         }
 
         // Contact Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            
-            // Show success message
-            alert(`Thank you, ${name}! Your message has been sent successfully. We'll get back to you at ${email} within 24 hours.`);
-            
-            // Reset form
-            this.reset();
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value;
+
+    // Your Google Apps Script URL ↓ paste here
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzvQQ2ofPJAfeZfpa1HbnvDkoq-HZBv3Km_sGd2UrJ41HLcn0tJPptDMR8y6P9e2f0QFQ/exec";
+
+    try {
+        const res = await fetch(scriptURL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name,
+                email,
+                phone,
+                service,
+                message
+            })
         });
+
+        alert(`Thank you, ${name}! Your message has been sent successfully.`);
+        this.reset();
+    } catch (error) {
+        console.error("Error!", error);
+        alert("Something went wrong. Please try again later.");
+    }
+});
+
 
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(question => {
